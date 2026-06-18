@@ -1,9 +1,9 @@
 import { serve } from "@hono/node-server";
 import { Hono } from "hono";
-import authRoute from "./routes/auth";
-import projectRoute from "./routes/project";
-import skillsRoute from "./routes/skills";
-import experiencesRoute from "./routes/experiences";
+import authRoute from "./routes/auth.js";
+import projectRoute from "./routes/project.js";
+import skillsRoute from "./routes/skills.js";
+import experiencesRoute from "./routes/experiences.js";
 import { cors } from "hono/cors";
 import { serveStatic } from "hono/serve-static";
 import { join, dirname } from "node:path";
@@ -51,10 +51,14 @@ app.get("/", (c) => {
   return c.text("Hello Hono!");
 });
 
+const port = Number(process.env.PORT || 3000);
+
 serve({
   fetch: app.fetch,
-  port: 3000,
+  port,
 });
+
+console.log(`Server running on port ${port}`);
 
 
 

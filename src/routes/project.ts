@@ -1,11 +1,11 @@
 import { Hono } from "hono";
-import { db } from "../db/client";
-import { projects } from "../db/schema/projects";
+import { db } from "../db/client.js";
+import { projects } from "../db/schema/projects.js";
 
 import { eq } from "drizzle-orm";
 
-import { authMiddleware } from "../middleware/auth";
-import { saveProjectImageFromBuffer } from "../utils/upload";
+import { authMiddleware } from "../middleware/auth.js";
+import { saveProjectImageFromBuffer } from "../utils/upload.js";
 
 const projectRoute = new Hono();
 
