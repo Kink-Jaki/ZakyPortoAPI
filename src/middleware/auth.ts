@@ -1,5 +1,5 @@
 import { createMiddleware } from "hono/factory";
-import { verifyToken } from "../utils/jwt";
+import { verifyToken } from "../utils/jwt.js";
 
 export const authMiddleware = createMiddleware(
   async (c, next) => {

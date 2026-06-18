@@ -1,8 +1,8 @@
 import { Hono } from "hono";
-import { db } from "../db/client";
-import { skills } from "../db/schema/skills";
+import { db } from "../db/client.js";
+import { skills } from "../db/schema/skills.js";
 import { eq } from "drizzle-orm";
-import { authMiddleware } from "../middleware/auth";
+import { authMiddleware } from "../middleware/auth.js";
 
 const skillsRoute = new Hono();
 

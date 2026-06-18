@@ -1,16 +1,17 @@
 import { Hono } from "hono";
-import { db } from "../db/client";
-import { users } from "../db/schema/users";
+import { db } from "../db/client.js";
+import { users } from "../db/schema/users.js";
 import { eq } from "drizzle-orm";
+
 
 import {
   hashPassword,
   comparePassword,
-} from "../utils/hash";
+} from "../utils/hash.js";
 
 import {
   generateToken,
-} from "../utils/jwt";
+} from "../utils/jwt.js";
 
 const authRoute = new Hono();
 

@@ -1,9 +1,11 @@
 import 'dotenv/config';
 
-import { db } from '../db/client';
-import { projects } from '../db/schema/projects';
-import { skills } from '../db/schema/skills';
-import { experiences } from '../db/schema/experiences';
+import { db } from '../db/client.js';
+import { projects } from '../db/schema/projects.js';
+import { skills } from '../db/schema/skills.js';
+
+import { experiences } from '../db/schema/experiences.js';
+
 
 const SEED_PROJECTS: Array<{
   title: string;
@@ -130,7 +132,15 @@ async function main() {
 
   await db.insert(projects).values(SEED_PROJECTS);
   await db.insert(skills).values(SEED_SKILLS);
-  await db.insert(experiences).values(SEED_EXPERIENCES);
+  // experiences.skills is stored as jsonb array in DB schema, so also include `type` field.
+  await db.insert(experiences).values(
+    SEED_EXPERIENCES.map((e) => ({
+      ...e,
+      type: "work" as const,
+      skills: [],
+    })) as any
+  );
+
 
   console.log('✅ Dummy data seeded: projects/skills/experiences');
 }

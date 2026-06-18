@@ -1,8 +1,8 @@
 import { Hono } from "hono";
-import { db } from "../db/client";
-import { experiences } from "../db/schema/experiences";
+import { db } from "../db/client.js";
+import { experiences } from "../db/schema/experiences.js";
 import { eq } from "drizzle-orm";
-import { authMiddleware } from "../middleware/auth";
+import { authMiddleware } from "../middleware/auth.js";
 
 const experiencesRoute = new Hono();
 
