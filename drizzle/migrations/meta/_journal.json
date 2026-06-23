@@ -15,6 +15,13 @@
       "when": 1781667904683,
       "tag": "0001_light_groot",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1782180833106,
+      "tag": "0002_glorious_gateway",
+      "breakpoints": true
     }
   ]
 }
