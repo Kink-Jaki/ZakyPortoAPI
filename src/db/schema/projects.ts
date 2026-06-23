@@ -15,6 +15,9 @@ export const projects = pgTable("projects", {
 
   description: text("description").notNull(),
 
+  // Konten detail ala blog (akan ditampilkan di halaman /project/:id)
+  content: text("content").notNull().default(''),
+
   stack: text("stack").notNull(),
 
   githubUrl: varchar("github_url", {

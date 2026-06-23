@@ -80,9 +80,11 @@ projectRoute.post("/", authMiddleware, async (c) => {
 
   const title = getTextField(dataForm, "title") ?? "";
   const description = getTextField(dataForm, "description") ?? "";
+  const content = getTextField(dataForm, "content") ?? "";
   const githubUrl = getTextField(dataForm, "githubUrl");
   const demoUrl = getTextField(dataForm, "demoUrl");
   const techStack = getTextField(dataForm, "techStack") ?? "";
+
 
 
   if (!title || !description || !techStack) {
@@ -91,6 +93,11 @@ projectRoute.post("/", authMiddleware, async (c) => {
       400
     );
   }
+
+  // content bersifat opsional dari sisi requirement (kolom punya default),
+  // namun tetap kita simpan jika dikirim dari form.
+  // Pastikan `content` adalah string.
+  const normalizedContent = content ?? "";
 
   let imageUrl: string | null = null;
   if (imageUpload) {
@@ -106,6 +113,7 @@ projectRoute.post("/", authMiddleware, async (c) => {
     .values({
       title,
       description,
+      content,
       imageUrl,
       githubUrl: githubUrl ?? null,
       demoUrl: demoUrl ?? null,
@@ -129,9 +137,11 @@ projectRoute.put("/:id", authMiddleware, async (c) => {
 
   const title = getTextField(dataForm, "title") ?? "";
   const description = getTextField(dataForm, "description") ?? "";
+  const content = getTextField(dataForm, "content") ?? "";
   const githubUrl = getTextField(dataForm, "githubUrl");
   const demoUrl = getTextField(dataForm, "demoUrl");
   const techStack = getTextField(dataForm, "techStack") ?? "";
+
 
   let imageUpload: Awaited<ReturnType<typeof parseImageFile>> = null;
   try {
@@ -172,6 +182,7 @@ projectRoute.put("/:id", authMiddleware, async (c) => {
     .set({
       title,
       description,
+      content,
       imageUrl: nextImageUrl,
       githubUrl: githubUrl ?? null,
       demoUrl: demoUrl ?? null,
